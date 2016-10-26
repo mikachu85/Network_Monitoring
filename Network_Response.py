@@ -29,14 +29,18 @@ bygg = [x['bygg'] for x in test_data]
 rom = [x['rom'] for x in test_data]
 rad = [x['rad'] for x in test_data]
 
-for i in range(0, 7, 1):
-    print '%18s, %5s, %5s, %1s' % (datamaskinid[i], bygg[i], rom[i], int(rad[i]))
+# for i in range(0, 5, 1):
+#     print '%18s, %5s, %5s, %1s' % (datamaskinid[i], bygg[i], rom[i], int(rad[i]))
 
-# Response from computer lab rooms
-for i in range(0,7, 1):
+f = open('Log\NORESPONSE', 'w')
+
+# Response from computer lab rooms - iterate through test DATA
+for i in range(0,19, 1):
     response = os.system("ping " + datamaskinid[i] + ' -n ' + '1')
-
-
+    if response == 0:
+        time.sleep(0)
+    else:
+        f.write(datamaskinid[i] + ' NO CONNECTION TO ' + bygg[i] + ' ' + rom[i] + '\n')
 
 
 
